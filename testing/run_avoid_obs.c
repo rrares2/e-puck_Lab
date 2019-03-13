@@ -26,7 +26,7 @@ int wheelSpeed[2];
 int targetVelocity = 0.9;
 
 // calibrate these values!! 
-int baseVelocity = 3; // was 2
+int baseVelocity = 2; // was 2
 int multiplier = 2;
 
 //int forwardSpeedWeight[4] = {baseVelocity*multiplier*2,baseVelocity*multiplier,baseVelocity,0};
@@ -71,10 +71,10 @@ void avoid_obst(){
 		for (j = 0; j < 4; j++){
 			if( i == 0){
 				cumulative[i] += forwardSpeedWeight[j] * e_get_calibrated_prox(j);
-				cumulative[i] += backwardSpeedWeight[NUMSENSORS/2 - j] * e_get_calibrated_prox(NUMSENSORS - j);
+				cumulative[i] += backwardSpeedWeight[NUMSENSORS/2 - j - 1] * e_get_calibrated_prox(NUMSENSORS/2 + j);
 			} else if( i == 1 ){
 				cumulative[i] += backwardSpeedWeight[j] * e_get_calibrated_prox(j);
-				cumulative[i] += forwardSpeedWeight[NUMSENSORS/2 - j] * e_get_calibrated_prox(NUMSENSORS - j);
+				cumulative[i] += forwardSpeedWeight[NUMSENSORS/2 - j - 1] * e_get_calibrated_prox(NUMSENSORS/2 + j);
 			}
 		}
 		
